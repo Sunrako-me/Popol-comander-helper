@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popol Commander Helper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>This is Popol Commander Helper</h1>
+    </header>       
+    
+    <div class="Checkboxes">
+        <div class="commander-item" draggable="true" data-commander="Aamon">Aamon</div>
+        <div class="commander-item" draggable="true" data-commander="Alice">Alice</div>
+        <div class="commander-item" draggable="true" data-commander="Angela">Angela</div>
+        <div class="commander-item" draggable="true" data-commander="Aurora">Aurora</div>
+        <div class="commander-item" draggable="true" data-commander="Chou">Chou</div>
+        <div class="commander-item" draggable="true" data-commander="Cyclops">Cyclops</div>
+        <div class="commander-item" draggable="true" data-commander="Diggie">Diggie</div>
+        <div class="commander-item" draggable="true" data-commander="Dyrroth">Dyrroth</div>
+        <div class="commander-item" draggable="true" data-commander="Fanny">Fanny</div>
+        <div class="commander-item" draggable="true" data-commander="Guinevere">Guinevere</div>
+        <div class="commander-item" draggable="true" data-commander="Gusion">Gusion</div>
+        <div class="commander-item" draggable="true" data-commander="Harley">Harley</div>
+        <div class="commander-item" draggable="true" data-commander="Johnson">Johnson</div>
+        <div class="commander-item" draggable="true" data-commander="Kagura">Kagura</div>
+        <div class="commander-item" draggable="true" data-commander="Kalea">Kalea</div>
+        <div class="commander-item" draggable="true" data-commander="Karina">Karina</div>
+        <div class="commander-item" draggable="true" data-commander="Lancelot">Lancelot</div>
+        <div class="commander-item" draggable="true" data-commander="Layla">Layla</div>
+        <div class="commander-item" draggable="true" data-commander="Ling">Ling</div>
+        <div class="commander-item" draggable="true" data-commander="Lukas">Lukas</div>
+        <div class="commander-item" draggable="true" data-commander="Lunox">Lunox</div>
+        <div class="commander-item" draggable="true" data-commander="Luo Yi">Luo Yi</div>
+        <div class="commander-item" draggable="true" data-commander="Lylia">Lylia</div>
+        <div class="commander-item" draggable="true" data-commander="Minotaur">Minotaur</div>
+        <div class="commander-item" draggable="true" data-commander="Miya">Miya</div>
+        <div class="commander-item" draggable="true" data-commander="Moskov">Moskov</div>
+        <div class="commander-item" draggable="true" data-commander="Nana">Nana</div>
+        <div class="commander-item" draggable="true" data-commander="Paquito">Paquito</div>
+        <div class="commander-item" draggable="true" data-commander="Popol and Kupa">Popol and Kupa</div>
+        <div class="commander-item" draggable="true" data-commander="Ruby">Ruby</div>
+        <div class="commander-item" draggable="true" data-commander="Vale">Vale</div>
+        <div class="commander-item" draggable="true" data-commander="Valir">Valir</div>
+        <div class="commander-item" draggable="true" data-commander="Vexana">Vexana</div>
+        <div class="commander-item" draggable="true" data-commander="Wanwan">Wanwan</div>
+        <div class="commander-item" draggable="true" data-commander="Yu Zhong">Yu Zhong</div>
+        <div class="commander-item" draggable="true" data-commander="Zilong">Zilong</div>
+    </div>
+    
+    <div class="Right-Container">
+        <div class="Board-Section">
+            <h2>Match Slots (Rounds 1 - 7)</h2>
+            <div class="Control-Btns">
+                <button id="reverseBtn">Reverse / Undo</button>
+                <button id="nextBtn" disabled>Next Round</button>
+                <button id="resetBtn">Reset Board</button>
+            </div>
+            
+            <div class="Slots-Container">
+                <div class="slot" data-slot="1">
+                    <span class="slot-label">Spot 1</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="slot" data-slot="2">
+                    <span class="slot-label">Spot 2</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="slot" data-slot="3">
+                    <span class="slot-label">Spot 3</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="slot" data-slot="4">
+                    <span class="slot-label">Spot 4</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="slot" data-slot="5">
+                    <span class="slot-label">Spot 5</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="slot" data-slot="6">
+                    <span class="slot-label">Spot 6</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="slot" data-slot="7">
+                    <span class="slot-label">Spot 7</span>
+                    <div class="slot-target"></div>
+                    <div class="user-input-container">
+                        <label>Opponent user:</label>
+                        <input type="text" maxlength="20" placeholder="Enter name...">
+                    </div>
+                    <span class="status-badge"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="guidelines">
+            <h2>Guidelines</h2>
+            <p>1. Drag a commander from the left pool into a target match spot.
+               2. Fill out spots 1 through 7 sequentially as you complete matchups.
+               3. Use "Reverse" to undo your last placement step by step.
+               4. "Next Round" loops your entire board context state forward securely.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>    
+</html>
