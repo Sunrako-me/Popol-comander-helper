@@ -5,7 +5,11 @@ let actionHistory = [];
 // allowing ONLY the badges to move while keeping data locked in place!
 let roundOffset = 0; 
 
+// Track the currently active tapped selection element for mobile/click fallback
+let tappedSelectedCommander = null;
+
 document.querySelectorAll('.commander-item').forEach(item => {
+    // --- Existing Drag Mechanics ---
     item.addEventListener('dragstart', () => {
         draggedHeroName = item.getAttribute('data-commander');
         item.classList.add('dragging');
@@ -13,6 +17,27 @@ document.querySelectorAll('.commander-item').forEach(item => {
 
     item.addEventListener('dragend', () => {
         item.classList.remove('dragging');
+    });
+
+    // --- New Tap-to-Select Feature for Phone Compatibility ---
+    item.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents clicking the item from instantly deselecting it
+
+        // If the same commander is clicked again, deselect it
+        if (item.classList.contains('selected')) {
+            item.classList.remove('selected');
+            tappedSelectedCommander = null;
+            draggedHeroName = null;
+            return;
+        }
+
+        // Clear previous selections
+        document.querySelectorAll('.commander-item').forEach(c => c.classList.remove('selected'));
+
+        // Mark this commander as selected
+        tappedSelectedCommander = item;
+        draggedHeroName = item.getAttribute('data-commander');
+        item.classList.add('selected');
     });
 });
 
@@ -114,10 +139,8 @@ document.querySelectorAll('.slot').forEach(slot => {
         slot.classList.remove('drag-over');
     });
 
-    slot.addEventListener('drop', (e) => {
-        e.preventDefault();
-        slot.classList.remove('drag-over');
-        
+    // Helper function to centralize the assignment logic for both drop and click actions
+    function executeAssignment() {
         if (draggedHeroName) {
             const slotNum = parseInt(slot.getAttribute('data-slot'));
 
@@ -126,7 +149,7 @@ document.querySelectorAll('.slot').forEach(slot => {
                 const prevSlot = document.querySelector(`.slot[data-slot="${slotNum - 1}"]`);
                 if (!prevSlot || !prevSlot.classList.contains('occupied')) {
                     alert(`Please fill out Spot ${slotNum - 1} before moving to Spot ${slotNum}.`);
-                    return;
+                    return false; // Stop execution
                 }
             }
 
@@ -146,8 +169,42 @@ document.querySelectorAll('.slot').forEach(slot => {
             });
 
             refreshBadges();
+            return true; // Success
+        }
+        return false;
+    }
+
+    // --- Drag Drop Handler ---
+    slot.addEventListener('drop', (e) => {
+        e.preventDefault();
+        slot.classList.remove('drag-over');
+        executeAssignment();
+    });
+
+    // --- New Click Slot Handler (Executes the selection if a commander is highlighted) ---
+    slot.addEventListener('click', () => {
+        if (tappedSelectedCommander) {
+            const success = executeAssignment();
+            
+            if (success) {
+                // Clear the active selection states once successfully placed
+                tappedSelectedCommander.classList.remove('selected');
+                tappedSelectedCommander = null;
+                draggedHeroName = null;
+            }
         }
     });
+});
+
+// Deselect the commander if the user clicks anywhere else on the blank layout page
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.commander-item') && !e.target.closest('.slot')) {
+        if (tappedSelectedCommander) {
+            tappedSelectedCommander.classList.remove('selected');
+            tappedSelectedCommander = null;
+            draggedHeroName = null;
+        }
+    }
 });
 
 document.getElementById('reverseBtn').addEventListener('click', () => {
@@ -171,9 +228,6 @@ document.getElementById('reverseBtn').addEventListener('click', () => {
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
-    // NO COMMANDER TEXT COPIES OR SHIFTS HAPPEN HERE ANYMORE!
-    // Commander names and input values stay exactly where they are.
-    
     // We only change the badge offsets so the labels move down the layout grid!
     roundOffset++;
     if (roundOffset > 7) roundOffset = 1;
